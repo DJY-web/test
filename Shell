@@ -45,3 +45,42 @@ time=$(date +%Y%m%d%H%M%S)
 
 
 
+
+
+# Get current date and time
+DATE=$(date +"%Y-%m-%d_%H-%M-%S")
+
+# Use current date and time as log file name
+LOG_FILE="log_$DATE.txt"
+
+# Check if the file exists in the specified path
+if [ -f /path/to/file ]; then
+  # If the file exists, run the second script
+  sh /path/to/second/script.sh | tee -a $LOG_FILE
+
+  # Kill the current shell process
+  kill -9 $$
+fi
+
+
+
+# Get current date and time
+DATE=$(date +"%Y-%m-%d_%H-%M-%S")
+
+# Use current date and time as log file name
+LOG_FILE="log_$DATE.txt"
+
+# Check if the file exists in the specified path
+if [ -f /path/to/file ]; then
+  # If the file exists, run the second script
+  sh /path/to/second/script.sh | tee -a $LOG_FILE
+
+  # Kill the current shell process
+  kill -9 $$
+fi
+
+# Output the log of the first script
+tee -a $LOG_FILE
+
+
+
