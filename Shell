@@ -83,4 +83,19 @@ fi
 tee -a $LOG_FILE
 
 
+#!/bin/bash
+
+# 检查指定路径下是否存在至少一个文件
+if [ -f /path/to/files/* ]; then
+  # 如果存在，执行脚本2
+  /path/to/script2
+else
+  # 如果不存在，执行脚本3
+  /path/to/script3
+fi
+
+# 将脚本1的执行结果输出到指定文件中
+echo "The result of script1 is: $?" > /path/to/output/file
+
+
 
