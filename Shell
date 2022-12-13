@@ -34,3 +34,14 @@ value=${value//\"/}
 
 # 去掉字符串中所有的双引号
 value=${value//\"/}
+
+
+
+# 获取当前的系统时间
+time=$(date +%Y%m%d%H%M%S)
+
+# 将运行日志输出到指定的文件中
+./your_script.sh > /path/to/logs/$time.log
+
+
+
