@@ -155,3 +155,15 @@ for i in $(seq 1 10); do
   fi
 done
 
+
+while true; do
+    # 执行一些命令
+    if [ $? != 1 ]; then
+        # 如果上一条命令运行结果不是1，则退出循环
+        break
+    fi
+done
+echo "错误：循环中的命令运行结果不是1" >&2
+
+
+
