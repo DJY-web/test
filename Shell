@@ -107,4 +107,5 @@ else
 fi
 
 
+find "$(pwd)" -maxdepth 1 -type d -exec echo {} >> /path/to/file \;
 
