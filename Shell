@@ -27,3 +27,10 @@ do
     echo "$value" >> output.txt
   done
 done
+
+
+# 去掉两端的双引号
+value=${value//\"/}
+
+# 去掉字符串中所有的双引号
+value=${value//\"/}
