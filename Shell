@@ -1,2 +1,23 @@
 
-test
+#!/bin/bash
+
+# 读取文件中=号后面的值
+# 假设文件名为file.txt
+
+# 读取文件中所有=号后面的值
+values=$(grep -oE '=[^[:space:]]+' file.txt)
+
+# 遍历每个值
+for value in $values
+do
+  # 去掉=号
+  value=${value:1}
+
+  # 在这里处理每个值
+  # 如果值是一个IP地址，您可以使用如下命令验证：
+  # if [[ $value =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+  #   echo "$value is a valid IP address"
+  # else
+  #   echo "$value is not a valid IP address"
+  # fi
+done
