@@ -109,3 +109,21 @@ fi
 
 find "$(pwd)" -maxdepth 1 -type d -exec echo {} >> /path/to/file \;
 
+
+
+#!/bin/sh
+
+# 指定要写入文件的路径
+path="/path/to/dir"
+
+# 遍历指定路径下的全部文件
+for file in $path/*
+do
+  # 将文件内容一条一条写入文件
+  cat "$file" >> output.txt
+done
+
+
+
+
+
