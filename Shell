@@ -99,3 +99,12 @@ echo "The result of script1 is: $?" > /path/to/output/file
 
 
 
+
+if [ $(ls -A /path/to/dir | wc -l) -gt 0 ]; then
+  echo "1"
+else
+  echo "2"
+fi
+
+
+
