@@ -145,4 +145,13 @@ if [ $? -ne 0 ]; then
 fi
 
 
+set -e
+
+for i in $(seq 1 10); do
+  # 这里是你要运行的命令
+  if [ $? -ne 1 ]; then
+    echo "命令运行失败！"
+    exit 1
+  fi
+done
 
