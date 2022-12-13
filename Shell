@@ -166,4 +166,7 @@ done
 echo "错误：循环中的命令运行结果不是1" >&2
 
 
+sudo apt-get install logrotate
+
+
 
