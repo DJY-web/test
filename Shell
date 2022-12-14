@@ -279,4 +279,6 @@ $ readlink -f file.txt
 /home/user/documents/file.txt
 
 
+for file in *; do sed -i '2i\
+Fixed content' "$file"; done
 
