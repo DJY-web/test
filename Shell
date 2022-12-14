@@ -220,3 +220,27 @@ else
 fi
 
 
+
+
+#!/bin/bash
+
+# 运行脚本一号
+./script1.sh
+
+# 获取脚本一号的返回值
+script1_result=$?
+
+if [ $script1_result -eq 0 ]; then
+  # 运行脚本二号
+  ./script2.sh
+
+  # 保存脚本一号的运行日记
+  cat script1.log >> /path/to/logfile
+else
+  # 运行脚本三号
+  ./script3.sh
+
+  # 保存脚本三号的运行日记
+  cat script3.log >> /path/to/logfile
+fi
+
