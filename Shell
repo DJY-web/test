@@ -193,5 +193,15 @@ for i in {1..10}; do
 done
 
 
+#!/bin/bash
+
+# 检查文件是否存在
+if [ -f "/path/to/file" ]; then
+  # 文件存在，返回0
+  exit 0
+else
+  # 文件不存在，返回任意值
+  exit 1
+fi
 
 
