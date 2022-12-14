@@ -244,3 +244,29 @@ else
   cat script3.log >> /path/to/logfile
 fi
 
+
+
+
+#!/bin/bash
+
+# Call script 1
+./script1.sh
+
+# Get the return value of script 1
+result=$?
+
+# If the return value is 0
+if [ $result -eq 0 ]; then
+  # Save the log of script 1 to a file
+  ./script1.sh > script1.log
+
+  # Run script 2
+  ./script2.sh
+else
+  # Run script 3
+  ./script3.sh
+
+  # Save the log of script 3 to a file
+  ./script3.sh > script3.log
+fi
+
