@@ -212,3 +212,11 @@ else
   echo 1
 fi
 
+
+if [ $? -eq 0 ]; then
+    echo "The script ran successfully."
+else
+    echo "The script failed to run."
+fi
+
+
