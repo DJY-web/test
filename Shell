@@ -270,3 +270,13 @@ else
   ./script3.sh > script3.log
 fi
 
+
+
+
+$ pwd
+/home/user/documents
+$ readlink -f file.txt
+/home/user/documents/file.txt
+
+
+
