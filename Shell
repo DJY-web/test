@@ -282,3 +282,24 @@ $ readlink -f file.txt
 for file in *; do sed -i '2i\
 Fixed content' "$file"; done
 
+#!/bin/bash
+
+# 设置文件路径
+files=('/path/to/file1' '/path/to/file2' '/path/to/file3')
+
+# 使用 for 循环执行文件
+for file in "${files[@]}"
+do
+    # 执行文件
+    sh "$file"
+
+    # 判断是否出错
+    if [ $? -ne 0 ]; then
+        # 如果出错，执行脚本1并终止循环
+        sh '/path/to/script1'
+        break
+    fi
+done
+
+# 执行脚本2
+sh '/path/to/script2'
