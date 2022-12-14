@@ -184,3 +184,6 @@ sudo apt-get install logrotate
 exec > script.log 2>&1
 
 
+./myscript.sh 2>&1 | tee myscript.log
+
+
