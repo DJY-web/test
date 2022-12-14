@@ -303,3 +303,26 @@ done
 
 # 执行脚本2
 sh '/path/to/script2'
+
+
+
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A template for creating an EC2 instance.",
+
+  "Resources": {
+    "MyEC2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": "ami-xxxxxxxx",
+        "InstanceType": "t2.micro",
+        "KeyName": "my-key-pair",
+        "SecurityGroupIds": [
+          "sg-xxxxxxxx"
+        ]
+      }
+    }
+  }
+}
+
+
