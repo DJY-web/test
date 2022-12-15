@@ -243,7 +243,63 @@ if [ $? -eq 0 ]; then
 else
     # If B does not return 0, run G
     ./G.sh
-fi
 
+
+
+
+#!/bin/bash
+
+# A script
+
+# Run B
+./B.sh
+
+# If B returns 0, run C
+if [ $? -eq 0 ]; then
+    ./C.sh
+
+    # If C returns 0, run D
+    if [ $? -eq 0 ]; then
+        ./D.sh
+
+        # If D returns 0, run E
+        if [ $? -eq 0 ]; then
+            ./E.sh
+
+            # If E returns 0, run F
+            if [ $? -eq 0 ]; then
+                ./F.sh
+
+                # If F returns 0, run G
+                if [ $? -eq 0 ]; then
+                    ./G.sh
+
+                    # If G returns 0, run H
+                    if [ $? -eq 0 ]; then
+                        ./H.sh
+                    else
+                        # If G does not return 0, run I
+                        ./I.sh
+                    fi
+                else
+                    # If F does not return 0, run I
+                    ./I.sh
+                fi
+            else
+                # If E does not return 0, run I
+                ./I.sh
+            fi
+        else
+            # If D does not return 0, run I
+            ./I.sh
+        fi
+    else
+        # If C does not return 0, run I
+        ./I.sh
+    fi
+else
+    # If B does not return 0, run I
+    ./I.sh
+fi
 
 
