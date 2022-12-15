@@ -88,3 +88,18 @@ else
   ./D.sh
 fi
 
+
+
+#!/bin/bash
+
+# 设置特别目录和特定文件的路径
+dir="special_directory"
+file="special_file"
+
+# 检查特别目录下是否存在特定文件
+if [ -f $dir/$file ]; then
+  exit 0
+else
+  exit 1
+fi
+
