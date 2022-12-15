@@ -174,3 +174,31 @@ B=$(get_filename $A)
 echo $B
 
 
+
+
+#!/bin/bash
+
+# A script
+
+# Run B
+./B.sh
+
+# If B returns 0, run C
+if [ $? -eq 0 ]; then
+    ./C.sh
+
+    # If C returns 0, run D
+    if [ $? -eq 0 ]; then
+        ./D.sh
+    fi
+else
+    # If B does not return 0, run E
+    ./E.sh
+fi
+
+# Regardless of the previous return values, run E
+./E.sh
+
+
+
+
