@@ -15,3 +15,21 @@ int main() {
   log_time();
   return 0;
 }
+
+
+
+
+#!/bin/bash
+
+log_file="/path/to/log/file.log"
+
+function log_time() {
+  # Get the current date and time
+  time=$(date)
+
+  # Append the time to the log file
+  echo "$time" >> "$log_file"
+}
+
+# Call the log_time function to write the time to the log file
+log_time
