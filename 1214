@@ -66,4 +66,25 @@ log "这是第一条日志消息"
 log "这是第二条日志消息"
 
 
+#!/bin/bash
+
+# 运行B脚本
+./B.sh
+
+# 获取B脚本的执行结果
+result=$?
+
+# 记录时间戳
+timestamp=$(date +%Y-%m-%d %H:%M:%S)
+
+# 将B脚本的执行结果和时间戳记录到log文件中
+echo "$timestamp, $result" >> log.txt
+
+# 如果B脚本执行成功，则运行C脚本
+if [ $result -eq 0 ]; then
+  ./C.sh
+else
+  # 否则运行D脚本
+  ./D.sh
+fi
 
