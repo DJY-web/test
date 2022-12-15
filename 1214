@@ -138,5 +138,17 @@ variable=$variable
 echo $variable
 
 
+#!/bin/bash
+
+# 在父进程中定义函数
+function print_message() {
+  echo "Hello, World!"
+}
+
+# 在后台运行子进程
+./child.sh &
+
+# 调用函数
+print_message
 
 
