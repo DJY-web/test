@@ -9,3 +9,9 @@ void log_time() {
   strftime(s, sizeof(s), "%c", &tm);
   printf("当前时间: %s\n", s);
 }
+
+
+int main() {
+  log_time();
+  return 0;
+}
