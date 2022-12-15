@@ -49,4 +49,21 @@ echo "这是第一行输出"
 echo "这是第二行输出"
 
 
+#!/bin/bash
+
+log_file="/path/to/log/file.log"
+
+function log() {
+  # Get the current date and time
+  time=$(date)
+
+  # Write the time and the log message to the log file
+  echo "$time: $1" >> "$log_file"
+}
+
+# Call the log function to write a message to the log file
+log "这是第一条日志消息"
+log "这是第二条日志消息"
+
+
 
