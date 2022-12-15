@@ -1,0 +1,11 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void log_time() {
+  time_t t = time(NULL);
+  struct tm tm = *localtime(&t);
+  char s[64];
+  strftime(s, sizeof(s), "%c", &tm);
+  printf("当前时间: %s\n", s);
+}
