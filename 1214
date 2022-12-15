@@ -200,5 +200,8 @@ fi
 ./E.sh
 
 
+for file in *; do
+    sed -i '1s/^/Hello, world! /' "$file"
+done
 
 
