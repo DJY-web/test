@@ -120,4 +120,23 @@ read variable < my_pipe
 echo $variable
 
 
+#!/bin/bash
+
+# 在子进程中定义一个变量
+variable=123
+
+# 将变量的值赋值给环境变量
+export variable
+
+# 在后台运行子进程
+./child.sh &
+
+# 在父进程中读取环境变量的值，并将值赋值给变量
+variable=$variable
+
+# 显示变量的值
+echo $variable
+
+
+
 
