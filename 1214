@@ -33,3 +33,20 @@ function log_time() {
 
 # Call the log_time function to write the time to the log file
 log_time
+
+
+
+
+
+#!/bin/bash
+
+# Store the current date and time in a variable
+time=$(date)
+
+# Print the time before each line of output
+echo "当前时间: $time"
+echo "这是第一行输出"
+echo "这是第二行输出"
+
+
+
