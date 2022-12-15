@@ -152,3 +152,25 @@ function print_message() {
 print_message
 
 
+
+#!/bin/bash
+
+# 定义一个函数
+function get_filename() {
+  # 获取路径中的文件名
+  local filename=$(basename $1)
+
+  # 返回文件名
+  echo $filename
+}
+
+# 定义一个变量，其值为路径
+A="a/b/c"
+
+# 调用函数，并将函数的返回值赋值给变量B
+B=$(get_filename $A)
+
+# 显示变量B的值
+echo $B
+
+
