@@ -114,3 +114,25 @@ exec 3<&-
 
 
 
+
+
+import re
+
+# 打开输入文件
+with open("input_file", "r") as f:
+    # 使用 for 循环读取文件中的每一行
+    for line in f:
+        # 使用 re 模块中的 search 函数提取文件中的信息
+        name_match = re.search(r'rhel8-name\[(\d+)\]:"([^"]+)"', line)
+        ip_match = re.search(r'rhel8-ip\[(\d+)\]:([^"]+)', line)
+
+        # 如果找到信息，就将信息输出到文件 A 中
+        if name_match and ip_match:
+            name = name_match.group(2)
+            ip = ip_match.group(2)
+            # 使用 with 语句打开输出文件
+            with open("file_a", "a") as out:
+                # 使用 write 函数将信息写入文件 A 中
+                out.write("[{}]\n{}\n".format(name, ip))
+
+
