@@ -59,3 +59,38 @@ done <<< "$rhel9_lines"
 
 echo -e "$file_a_data" > file_a.txt
 echo -e "$file_b_data" > file_b.txt
+
+
+
+
+#!/bin/bash
+
+# 打开文件
+exec 3< input_file
+
+# 使用循环读取文件中的每一行
+while read line <&3; do
+  # 使用 awk 命令提取文件中的信息
+  name=$(echo "$line" | awk -F: '{print $2}' | tr -d '"')
+  ip=$(echo "$line" | awk -F: '{print $3}' | tr -d '"')
+
+  # 判断当前行所属的文件，并输出到相应的文件中
+  if [[ $line =~ "rhel8" ]]; then
+    echo "[$name]" >> file_a
+    echo "$ip" >> file_a
+  elif [[ $line =~ "rhel9" ]]; then
+    echo "[$name]" >> file_b
+    echo "$ip" >> file_b
+  fi
+done
+
+# 关闭文件
+exec 3<&-
+
+
+
+
+
+
+
+
