@@ -1,0 +1,61 @@
+# 首先，我们需要打开要读取的文件
+input_file="input.txt"
+
+# 然后，我们使用 awk 命令将文件中的内容读取到变量中
+while read line; do
+    # 如果行以 rhel8 开头，就将其添加到变量 rhel8_lines 中
+    if [[ $line == rhel8* ]]; then
+        rhel8_lines+="$line\n"
+    # 如果行以 rhel9 开头，就将其添加到变量 rhel9_lines 中
+    elif [[ $line == rhel9* ]]; then
+        rhel9_lines+="$line\n"
+    fi
+done < "$input_file"
+
+# 创建两个空字典，用于存储文件 A 和文件 B 中的信息
+file_a_data=""
+file_b_data=""
+
+# 处理 rhel8 的信息
+while read line; do
+    # 将行按照冒号分割成两部分
+    parts=(${line//:/ })
+    # 如果第一部分包含字符串 'name'，则表明这是一行名称信息
+    if [[ ${parts[0]} == *name* ]]; then
+        # 获取名称
+        name=${parts[1]}
+        # 将名称添加到文件 A 的数据中
+        file_a_data+="[$name]\n"
+    # 否则，如果第一部分包含字符串 'ip'，则表明这是一行 IP 信息
+    elif [[ ${parts[0]} == *ip* ]]; then
+        # 获取 IP 地址
+        ip=${parts[1]}
+# 将 IP 地址添加到文件 A 的数据中
+file_a_data+="$ip\n"
+fi
+done <<< "$rhel8_lines"
+
+处理 rhel9 的信息
+
+while read line; do
+# 将行按照冒号分割成两部分
+parts=(${line//:/ })
+# 如果第一部分包含字符串 'name'，则表明这是一行名称信息
+if [[ ${parts[0]} == name ]]; then
+# 获取名称
+name=${parts[1]}
+# 将名称添加到文件 B 的数据中
+file_b_data+="[$name]\n"
+# 否则，如果第一部分包含字符串 'ip'，则表明这是一行 IP 信息
+elif [[ ${parts[0]} == ip ]]; then
+# 获取 IP 地址
+ip=${parts[1]}
+# 将 IP 地址添加到文件 B 的数据中
+file_b_data+="$ip\n"
+fi
+done <<< "$rhel9_lines"
+
+最后，我们使用 shell 的输出重定向操作将处理后的数据写入新的文件
+
+echo -e "$file_a_data" > file_a.txt
+echo -e "$file_b_data" > file_b.txt
