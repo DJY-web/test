@@ -303,3 +303,27 @@ else
 fi
 
 
+
+
+#!/bin/bash
+
+# Read the input file
+while read -r line; do
+  # Extract the name and IP address from each line
+  name=$(echo "$line" | grep -oE 'rhel[89]-name\[[0-9]+\]: "(.*)"' | sed 's/rhel[89]-name\[[0-9]*\]: //g' | tr -d '"')
+  ip=$(echo "$line" | grep -oE 'rhel[89]-ip\[[0-9]+\]: (.*)' | sed 's/rhel[89]-ip\[[0-9]*\]: //g')
+
+  # If a name and an IP address were extracted, append them to the appropriate output file
+  if [ -n "$name" ] && [ -n "$ip" ]; then
+    if [[ $line =~ "rhel8" ]]; then
+      echo "[$name]" >> file_a.txt
+      echo "$ip" >> file_a.txt
+    elif [[ $line =~ "rhel9" ]]; then
+      echo "[$name]" >> file_b.txt
+      echo "$ip" >> file_b.txt
+    fi
+  fi
+done < input_file.txt
+
+
+
