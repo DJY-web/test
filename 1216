@@ -1,0 +1,61 @@
+# 首先，我们需要打开要读取的文件
+with open('input.txt', 'r') as f:
+    # 然后，我们读取文件的所有内容
+    content = f.read()
+
+# 将文件内容按行分割成一个列表
+lines = content.split('\n')
+
+# 创建一个空字典，用于存储 rhel8 和 rhel9 的信息
+data = {}
+
+# 遍历文件中的每一行
+for line in lines:
+    # 如果行以 rhel8 开头，就将其添加到字典的 rhel8 键中
+    if line.startswith('rhel8'):
+        data.setdefault('rhel8', []).append(line)
+    # 如果行以 rhel9 开头，就将其添加到字典的 rhel9 键中
+    elif line.startswith('rhel9'):
+        data.setdefault('rhel9', []).append(line)
+
+# 创建两个空字典，用于存储文件 A 和文件 B 中的信息
+file_a_data = {}
+file_b_data = {}
+
+# 遍历字典中的所有值
+for value in data.values():
+    # 对于每个值，我们遍历其中的每一行
+    for line in value:
+        # 将行按照冒号分割成两部分
+        parts = line.split(':')
+        # 如果第一部分包含字符串 'name'，则表明
+这是一行名称信息
+if 'name' in parts[0]:
+# 获取名称
+name = parts[1].strip()
+# 将名称添加到对应的字典中
+if 'rhel8' in line:
+file_a_data[name] = ''
+else:
+file_b_data[name] = ''
+# 否则，如果第一部分包含字符串 'ip'，则表明这是一行 IP 信息
+elif 'ip' in parts[0]:
+# 获取 IP 地址
+ip = parts[1].strip()
+# 将 IP 地址添加到对应的字典中
+if 'rhel8' in line:
+file_a_data[name] = ip
+else:
+file_b_data[name] = ip
+
+最后，我们使用 Python 的文件 I/O 操作将处理后的数据写入新的文件
+
+with open('file_a.txt', 'w') as f:
+for name, ip in file_a_data.items():
+f.write(f'[{name}]\n')
+f.write(ip + '\n')
+
+with open('file_b.txt', 'w') as f:
+for name, ip in file_b_data.items():
+f.write(f'[{name}]\n')
+f.write(ip + '\n')
