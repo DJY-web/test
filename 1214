@@ -327,3 +327,39 @@ done < input_file.txt
 
 
 
+有一份文件如下文
+rhel8-name[1]：“test1”
+rhel8-name[2]：“test2”
+rhel8-ip[1]：192.168.1.1
+rhel8-ip[2]：192.168.1.2
+.......
+rhel8-name[n]：“testn”
+rhel8-ip[n]：192.168.1.n
+
+
+rhel9-name[1]：“try1”
+rhel9-name[2]：“try2”
+rhel9-ip[1]：192.168.2.1
+rhel9-ip[2]：192.168.2.2
+.......
+rhel9-name[n]：”tryn”
+rhel9-ip[n]：192.168.2.n
+
+用shell脚本通过上述文件，生成A和B两份文件
+文件A内容如下
+[test1]
+192.168.1.1
+[test2]
+192.168.1.2
+......
+[testn]
+192.168.1.n
+文件B如下
+[try1]
+192.168.2.1
+[try2]
+192.168.2.2
+......
+[tryn]
+192.168.2.n
+请告诉详细的执行代码。要求自动化完成
