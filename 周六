@@ -1,0 +1,20 @@
+import re
+
+# 打开文件
+with open('input.txt', 'r') as f:
+  # 初始化列表
+  data = []
+  # 遍历文件中的每一行
+  for line in f:
+    # 使用正则表达式提取数据
+    m = re.match(r'Rhel8-(name|ip)\[(\d+)\]=(.+)', line)
+    if m:
+      # 如果匹配成功，将数据添加到列表中
+      data.append(m.group(3))
+
+# 打开新文件
+with open('output.txt', 'w') as f:
+  # 遍历列表中的每个数据
+  for d in data:
+    # 将数据写入文件
+    f.write(d + '\n')
