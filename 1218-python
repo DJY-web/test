@@ -39,10 +39,41 @@ for namerhel8, iprhel8 in zip(namesrhel8, ipsrhel8):
     resultrhel8[namerhel8] = iprhel8
 
 today = datetime.datetime.today().strftime('%Y%m%d')
+if len(resultrhel8) == 0:
+    pass
+else:
+    with open(f'rhel8_{today}.txt', 'w') as f:
+        for namerhel8, iprhel8 in resultrhel8.items():
+            f.write(f'[{namerhel8}]\n')
+            f.write(f'{iprhel8}\n')
 
-with open(f'rhel8_{today}.txt', 'w') as f:
-    for namerhel8, iprhel8 in resultrhel8.items():
-        f.write(f'[{namerhel8}]\n')
-        f.write(f'{iprhel8}\n')
+    with open(f'rhel8_{today}.txt', 'a') as f:
+        f.seek(0, 2)
+        f.write('\n\n\n')
+        f.write('特定内容')
+###############################################################
+name_rhel9 = r'rhel9-name\[\d+\]=(.+)'
+ip_rhel9 = r'rhel9-ip\[\d+\]=(.+)'
+namesrhel9 = re.findall(name_rhel9, content)
+ipsrhel9 = re.findall(ip_rhel9, content)
+
+resultrhel9 = {}
+for namerhel9, iprhel9 in zip(namesrhel9, ipsrhel9):
+    resultrhel9[namerhel9] = iprhel9
+
+today = datetime.datetime.today().strftime('%Y%m%d')
+
+if len(resultrhel9) == 0:
+    pass
+else:
+    with open(f'rhel9_{today}.txt', 'w') as f:
+        for namerhel9, iprhel9 in resultrhel9.items():
+            f.write(f'[{namerhel9}]\n')
+            f.write(f'{iprhel9}\n')
+
+    with open(f'rhel9_{today}.txt', 'a') as f:
+        f.seek(0, 2)
+        f.write('\n\n\n')
+        f.write('特定内容')
 
 
