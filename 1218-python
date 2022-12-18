@@ -1,0 +1,48 @@
+rhel8-name[1]=test1
+rhel8-name[2]=test2
+rhel8-name[3]=test3
+rhel8-name[4]=test4
+rhel8-ip[1]=192.168.1.1
+rhel8-ip[2]=192.168.1.2
+rhel8-ip[3]=192.168.1.3
+rhel8-ip[4]=192.168.1.4
+rhel9-name[1]=try1
+rhel9-name[2]=try2
+rhel9-name[3]=try3
+rhel9-name[4]=try4
+rhel9-ip[1]=192.168.2.1
+rhel9-ip[2]=192.168.2.2
+rhel9-ip[3]=192.168.2.3
+rhel9-ip[4]=192.168.2.4
+
+#############################################################
+import re
+import datetime
+import argparse
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('path', help='filepath')
+
+args = parser.parse_args()
+
+with open(args.path, 'r') as f:
+    content = f.read()
+
+name_rhel8 = r'rhel8-name\[\d+\]=(.+)'
+ip_rhel8 = r'rhel8-ip\[\d+\]=(.+)'
+namesrhel8 = re.findall(name_rhel8, content)
+ipsrhel8 = re.findall(ip_rhel8, content)
+
+resultrhel8 = {}
+for namerhel8, iprhel8 in zip(namesrhel8, ipsrhel8):
+    resultrhel8[namerhel8] = iprhel8
+
+today = datetime.datetime.today().strftime('%Y%m%d')
+
+with open(f'rhel8_{today}.txt', 'w') as f:
+    for namerhel8, iprhel8 in resultrhel8.items():
+        f.write(f'[{namerhel8}]\n')
+        f.write(f'{iprhel8}\n')
+
+
