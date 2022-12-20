@@ -1,0 +1,11 @@
+---
+- hosts: windows
+  tasks:
+  - name: Find all files in the C:\Windows directory
+    win_find:
+      paths: C:\Windows
+    register: result
+  - name: Print the file names
+    debug:
+      msg: "{{ item.path }}"
+    loop: "{{ result.files }}"
