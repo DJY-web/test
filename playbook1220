@@ -9,3 +9,16 @@
     debug:
       msg: "{{ item.path }}"
     loop: "{{ result.files }}"
+####replace#############
+- hosts: all
+  tasks:
+  - name: Replace hostname with Linux
+    replace:
+      path: /etc/hosts
+      regexp: 'hostname'
+      replace: 'Linux'
+  - name: Replace iparr with 192.168.1.1
+    replace:
+      path: /etc/hosts
+      regexp: 'iparr'
+      replace: '192.168.1.1'
