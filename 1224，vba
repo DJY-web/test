@@ -1,0 +1,24 @@
+Sub ExportToText()
+    ' 定义变量
+    Dim wb As Workbook
+    Dim ws As Worksheet
+    Dim cell As Range
+    Dim strValue As String
+    Dim strFilename As String
+    Dim intRet As Integer
+    Dim fs As Object
+
+    ' 获取当前工作簿和工作表
+    Set wb = ThisWorkbook
+    Set ws = wb.Worksheets("Sheet1") ' 请替换成你想要导出的工作表的名称
+
+    ' 获取单元格的值
+    Set cell = ws.Range("A1") ' 请替换成你想要导出的单元格的地址
+    strValue = cell.Value
+
+    ' 输出到文本文件
+    strFilename = "C:\Temp\output.txt" ' 请替换成你想要保存的文件名
+    Set fs = CreateObject("Scripting.FileSystemObject")
+    intRet = fs.OpenTextFile(strFilename, 2, True).WriteLine(strValue)
+    fs.Close
+End Sub
