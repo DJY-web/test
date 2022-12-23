@@ -31,3 +31,9 @@ Outputs:
   MyEC2Instance2Info:
     Value: !GetAtt MyEC2Instance2.PublicIp
     Description: The public IP address of MyEC2Instance2
+  EC2Instance1Name:
+    Value: !Ref EC2Instance1
+    Description: The name of EC2Instance1
+  EC2Instance2Name:
+    Value: !Ref EC2Instance2
+    Description: The name of EC2Instance2
