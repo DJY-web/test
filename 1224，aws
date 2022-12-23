@@ -37,3 +37,8 @@ Outputs:
   EC2Instance2Name:
     Value: !Ref EC2Instance2
     Description: The name of EC2Instance2
+    
+    
+    ########
+    aws cloudformation describe-stacks --stack-name <stack-name> --query "Stacks[0].Outputs[0].OutputValue"
+
