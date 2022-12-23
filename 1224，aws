@@ -1,0 +1,22 @@
+import pandas as pd
+
+# 读取 Excel 文件
+df = pd.read_excel('file.xlsx', sheet_name='Sheet1')
+
+# 读取第 2 行的值
+row = df.iloc[1]
+
+# 输出行的值
+print(row)
+
+
+import pandas as pd
+
+# 读取 Excel 文件
+df = pd.read_excel('file.xlsx', sheet_name='Sheet1')
+
+# 读取 "Name" 列的值
+column = df['Name']
+
+# 输出列的值
+print(column)
