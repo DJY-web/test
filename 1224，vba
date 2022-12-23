@@ -71,3 +71,39 @@ Sub CopyWithExtraInfo()
     ws2.Cells(lastRow + 1, "A").Value = strValue ' 写入第一个单元格
     ws2.Cells(lastRow + 2, "A").Value = "test" ' 写入
 
+##############################
+Sub CopyRangeToAnotherSheet()
+    ' 定义变量
+    Dim wb As Workbook
+    Dim ws1 As Worksheet
+    Dim ws2 As Worksheet
+    Dim rng1 As Range
+    Dim rng2 As Range
+    Dim lastRow As Long
+    Dim i As Long
+
+    ' 获取当前工作簿和工作表
+    Set wb = ThisWorkbook
+    Set ws1 = wb.Worksheets("2.区画构成") ' 请替换成你想要读取的工作表的名称
+    Set ws2 = wb.Worksheets("json") ' 请替换成你想要写入的工作表的名称
+
+    ' 清空 "json" sheet 的内容
+    ws2.Cells.Clear
+
+    ' 获取 D41 到 D70 和 I41 到 I70 的区域
+    Set rng1 = ws1.Range("D41:D70")
+    Set rng2 = ws1.Range("I41:I70")
+
+    ' 获取 "json" sheet 的最后一行
+    lastRow = ws2.Cells(ws2.Rows.Count, "A").End(xlUp).Row
+
+    ' 循环读取和写入
+    For i = 1 To rng1.Rows.Count
+        If rng1.Cells(i, 1).Value <> "" And rng2.Cells(i, 1).Value <> "" Then
+            lastRow = lastRow + 1
+            ws2.Cells(lastRow, "A").Value = "insttype：" & rng2.Cells(i, 1).Value
+            lastRow = lastRow + 1
+            ws2.Cells(lastRow, "A").Value = "Name:" & rng1.Cells(i, 1).Value
+        End If
+    Next i
+End Sub
