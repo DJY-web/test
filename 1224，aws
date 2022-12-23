@@ -12,3 +12,22 @@ cell_value = worksheet.cell(0, 0).value # 请替换成你想要读取的单元�
 print(cell_value)
 
 
+##########################
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  MyEC2Instance1:
+    Type: AWS::EC2::Instance
+    Properties:
+      # EC2 instance properties
+  MyEC2Instance2:
+    Type: AWS::EC2::Instance
+    Properties:
+      # EC2 instance properties
+
+Outputs:
+  MyEC2Instance1Info:
+    Value: !GetAtt MyEC2Instance1.PublicIp
+    Description: The public IP address of MyEC2Instance1
+  MyEC2Instance2Info:
+    Value: !GetAtt MyEC2Instance2.PublicIp
+    Description: The public IP address of MyEC2Instance2
