@@ -22,3 +22,26 @@ Sub ExportToText()
     intRet = fs.OpenTextFile(strFilename, 2, True).WriteLine(strValue)
     fs.Close
 End Sub
+
+
+########################3
+Sub CopyToAnotherSheet()
+    ' 定义变量
+    Dim wb As Workbook
+    Dim ws1 As Worksheet
+    Dim ws2 As Worksheet
+    Dim cell As Range
+    Dim strValue As String
+
+    ' 获取当前工作簿和工作表
+    Set wb = ThisWorkbook
+    Set ws1 = wb.Worksheets("Sheet1") ' 请替换成你想要读取的工作表的名称
+    Set ws2 = wb.Worksheets("Sheet2") ' 请替换成你想要写入的工作表的名称
+
+    ' 获取单元格的值
+    Set cell = ws1.Range("A1") ' 请替换成你想要读取的单元格的地址
+    strValue = cell.Value
+
+    ' 将单元格的值写入另一个工作表
+    ws2.Range("A1").Value = strValue ' 请替换成你想要写入的单元格的地址
+End Sub
