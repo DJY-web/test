@@ -107,3 +107,81 @@ Sub CopyRangeToAnotherSheet()
         End If
     Next i
 End Sub
+#######################
+Resources:
+  test:
+    Type: AWS::EC2::Instance
+    Properties:
+      IamInstanceProfile: arm
+      ImageId: ami-abcdefgh
+      InstanceType: t2.micro
+      KeyName: my-key-pair
+      SecurityGroupIds:
+        - sg-12345678
+      BlockDeviceMappings:
+        - DeviceName: /dev/sdf
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+        - DeviceName: /dev/sdg
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+        - DeviceName: /dev/sdh
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+        - DeviceName: /dev/sdi
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+        - DeviceName: /dev/sdj
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+      Tags:
+        - Key: Name
+          Value: test
+   test2:
+    Type: AWS::EC2::Instance
+    Properties:
+      IamInstanceProfile: arm
+      ImageId: ami-abcdefgh
+      InstanceType: t2.micro
+      KeyName: my-key-pair
+      SecurityGroupIds:
+        - sg-12345678
+      BlockDeviceMappings:
+        - DeviceName: /dev/sdf
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+        - DeviceName: /dev/sdg
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+        - DeviceName: /dev/sdh
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+        - DeviceName: /dev/sdi
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+        - DeviceName: /dev/sdj
+          Ebs:
+            VolumeType: gp3
+            VolumeSize: 10
+            Iops: 3000
+      Tags:
+        - Key: Name
+          Value: test2
