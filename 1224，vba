@@ -185,3 +185,20 @@ Resources:
       Tags:
         - Key: Name
           Value: test2
+##################################################
+Sub ReplaceUndefined()
+
+' Define the range to search for "初期设定"
+Dim rng As Range
+Set rng = Range("P204:Y352")
+
+' Loop through each cell in the range
+For Each cell In rng
+' If the cell contains "初期设定"
+If InStr(cell.Value, "初期设定") > 0 Then
+' Replace "未定义" with the value of the cell above
+cell.Value = Replace(cell.Value, "未定义", cell.Offset(-1, 0).Value)
+End If
+Next cell
+
+End Sub
