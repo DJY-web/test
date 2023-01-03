@@ -97,3 +97,36 @@ MyInstanceProfile:
   Properties:
     Roles:
       - !Ref MyRole
+####################
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      IamInstanceProfile: !Ref MyInstanceProfile
+
+MyInstanceProfile:
+  Type: AWS::IAM::InstanceProfile
+  Properties:
+    Roles:
+      - !Ref MyRole
+
+MyRole:
+  Type: AWS::IAM::Role
+  Properties:
+    AssumeRolePolicyDocument:
+      Version: 2012-10-17
+      Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+              - ec2.amazonaws.com
+          Action: sts:AssumeRole
+    Path: "/"
+    Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action: "*"
+              Resource: "*"
