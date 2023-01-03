@@ -188,3 +188,10 @@ Resources:
                   - ssm:ListAssociations
                 Resource: "*"
 
+#################
+Resources:
+  MyInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - !Ref MyExistingRole
