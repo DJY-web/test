@@ -144,3 +144,5 @@ MyRole:
             Resource: "*"
       ManagedPolicyName: MyExistingPolicy
 
+#####################################
+aws iam add-role-to-instance-profile --instance-profile-name MyInstanceProfile --role-name MyRole
