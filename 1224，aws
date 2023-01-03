@@ -41,4 +41,31 @@ Outputs:
     
     ########
     aws cloudformation describe-stacks --stack-name <stack-name> --query "Stacks[0].Outputs[0].OutputValue"
+########################################################################
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-01234567890abcdef
+      InstanceType: t2.micro
+      KeyName: MyKeyPair
+      BlockDeviceMappings:
+      - DeviceName: /dev/xvda
+        Ebs:
+          VolumeSize: 8
+          VolumeType: gp2
+
+  MyVolume:
+    Type: AWS::EC2::Volume
+    Properties:
+      Size: 8
+      AvailabilityZone: us-east-1a
+      VolumeType: gp2
+
+  MyVolumeAttachment:
+    Type: AWS::EC2::VolumeAttachment
+    Properties:
+      Device: /dev/sdf
+      InstanceId: !Ref MyInstance
+      VolumeId: !Ref MyVolume
 
