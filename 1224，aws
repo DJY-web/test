@@ -149,4 +149,16 @@ aws iam add-role-to-instance-profile --instance-profile-name MyInstanceProfile -
 
 ####################################
 aws ec2 associate-iam-instance-profile --instance-id i-01234567890abcdef --iam-instance-profile Name=MyInstanceProfile
+############
+Resources:
+  MyInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - !Ref MyExistingRole
+
+MyInstance:
+  Type: AWS::EC2::Instance
+  Properties:
+    IamInstanceProfile: !Ref MyInstanceProfile
 
