@@ -207,4 +207,37 @@ Resources:
     Properties:
       IamInstanceProfile: !ImportValue InstanceProfileArn
 
+#######################
+Resources:
+  MyInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+      - !Ref MyRole
+  MyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - ec2.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Policies:
+      - PolicyName: MyPolicy
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+          - Effect: Allow
+            Action:
+            - s3:ListBucket
+            Resource: "arn:aws:s3:::*"
+
+Outputs:
+  InstanceProfileArn:
+    Value: !GetAtt MyInstanceProfile.Arn
+    Description: The ARN of the instance profile
 
