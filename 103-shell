@@ -10,3 +10,27 @@ sed 's/-/name[2]=/g' <<< 'rhel8-2-KENSHI2'
 awk -v s='rhel8-2-KENSHI2' '{split(s,a,"-"); print a[1]"-name[2]="a[3]}'
 echo 'rhel8-2-KENSHI2' | grep -oP '^\Krhel8|KENSHI2' | tr '\n' '-'
 
+#!/bin/bash
+
+# 定义变量
+name_index=1
+ip_index=1
+
+# 遍历文件的每一行
+while read -r line; do
+  # 如果行以 rhel8 开头
+  if [[ $line =~ ^rhel8 ]]; then
+    # 使用 sed 将字符串按照 "=" 分割
+    parts=($(echo "$line" | sed 's/=/ /g'))
+    # 打印输出
+    echo "${parts[0]}-name[$name_index]=${parts[1]}"
+    # 自增 name_index
+    ((name_index++))
+  # 如果行是 IP 地址
+  else
+    # 打印输出
+    echo "rhel8-ip[$ip_index]=$line"
+    # 自增 ip_index
+    ((ip_index++))
+  fi
+done < input.txt
