@@ -1,0 +1,1 @@
+echo '"OutpuKey": "rhel8p2splitKENSHI2",' | awk -F '[",:]' '{ print "rhel8-name[" $(NF-1) "]=" $4 }'
