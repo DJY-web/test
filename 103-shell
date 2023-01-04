@@ -4,3 +4,4 @@ echo 'rhel8-name[]=rhel8p2splitKENSHI2' | awk -F '[][]=*' '{ print "rhel8-name["
 awk -F '"' '{print $4}' <<< '"OutputKey": "rhel8p2splitKENSHI2",'
 awk -v s='rhel8p2splitKENSHI2' '{split(s,a,"p"); print a[1]"-name[2]="a[2]}'
 awk -v s='rhel8p2splitKENSHI2' '{split(s,a,"p"); split(a[2],b,"split"); print a[1]"-"b[1]"-"b[2]}'
+sed 's/p/-/g' <<< 'rhel8p2splitKENSHI2'
