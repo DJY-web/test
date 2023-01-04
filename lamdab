@@ -1,1 +1,27 @@
+import boto3
+import datetime
+
+def lambda_handler(event, context):
+    s3_client = boto3.client('s3')
+    cloudformation_client = boto3.client('cloudformation')
+    bucket_name = 'ohtake-djy'
+    folder_name = 'cfn'
+    
+    # 获取当前时间
+    current_time = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
+    
+    # 获取文件列表
+    file_list = s3_client.list_objects(Bucket=bucket_name, Prefix=folder_name)['Contents']
+    
+    # 枚举文件列表
+    for file in file_list:
+        # 如果文件名以 .json 或 .yml 结尾，就将其作为 CloudFormation 模板文件进行构建
+        if file['Key'].endswith('.json') or file['Key'].endswith('.yml'):
+            template_url = f"https://s3.amazonaws.com/{bucket_name}/{file['Key']}"
+            stack_name = f"ohtake-lambda-{current_time}"
+            cloudformation_client.create_stack(
+                StackName=stack_name,
+                TemplateURL=template_url,
+                Capabilities=['CAPABILITY_NAMED_IAM']
+            )
 
