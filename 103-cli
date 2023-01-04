@@ -3,4 +3,5 @@ aws cloudformation create-stack --stack-name "MyStack-$(date +%s)" --template-bo
 
 #############
 aws s3 rm s3://my-bucket/my-folder --recursive
-aws s3 ls s3://my-bucket/my-folder
+aws s3 ls s3://my-bucket/my-folder | awk '{print $4}'
+
