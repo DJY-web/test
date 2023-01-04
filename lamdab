@@ -24,4 +24,8 @@ def lambda_handler(event, context):
                 TemplateURL=template_url,
                 Capabilities=['CAPABILITY_NAMED_IAM']
             )
+            
+            #########################
+aws cloudformation create-stack --stack-name MyStack --template-url https://s3.amazonaws.com/my-bucket/templates/MyTemplate.yml
+
 
