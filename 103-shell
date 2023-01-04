@@ -2,3 +2,4 @@ echo '"OutpuKey": "rhel8p2splitKENSHI2",' | awk -F '[",:]' '{ print "rhel8-name[
 echo 'rhel8-name[]=rhel8p2splitKENSHI2' | awk -F '[][]=*' '{ print "rhel8-name[" $3 "]=" $4 }'
 
 awk -F '"' '{print $4}' <<< '"OutputKey": "rhel8p2splitKENSHI2",'
+awk -v s='rhel8p2splitKENSHI2' '{split(s,a,"p"); print a[1]"-name[2]="a[2]}'
