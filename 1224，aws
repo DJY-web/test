@@ -195,3 +195,16 @@ Resources:
     Properties:
       Roles:
         - !Ref MyExistingRole
+        ###############
+  Outputs:
+  InstanceProfileArn:
+    Value: !GetAtt MyInstanceProfile.Arn
+    Description: The ARN of the instance profile
+    
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      IamInstanceProfile: !ImportValue InstanceProfileArn
+
+
