@@ -7,4 +7,5 @@ awk -v s='rhel8p2splitKENSHI2' '{split(s,a,"p"); split(a[2],b,"split"); print a[
 sed 's/p/-/g' <<< 'rhel8p2splitKENSHI2'
 grep -o '[^p]*' <<< 'rhel8p2splitKENSHI2' | tr '\n' '-'
 sed 's/-/name[2]=/g' <<< 'rhel8-2-KENSHI2'
+awk -v s='rhel8-2-KENSHI2' '{split(s,a,"-"); print a[1]"-name[2]="a[3]}'
 
