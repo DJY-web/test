@@ -34,3 +34,6 @@ while read -r line; do
     ((ip_index++))
   fi
 done < input.txt
+#################
+netsh interface set interface "Ethernet" enabled
+
