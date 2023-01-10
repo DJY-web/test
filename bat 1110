@@ -1,1 +1,21 @@
+@echo off
+
+setlocal
+
+rem Get the current date and time in the format "yyyy-MM-dd_HH-mm-ss"
+for /f "tokens=1-6 delims=-: " %%a in ('echo %date% %time%') do (
+    set year=%%a
+    set month=%%b
+    set day=%%c
+    set hour=%%d
+    set minute=%%e
+    set second=%%f
+)
+set timestamp=%year%-%month%-%day%_%hour%-%minute%-%second%
+
+rem Create an empty file with the timestamp in the filename
+cd C:\test
+echo. > %timestamp%.txt
+
+echo File %timestamp%.txt created in C:\test
 
